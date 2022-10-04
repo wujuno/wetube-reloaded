@@ -1,0 +1,11 @@
+extends base
+include mixins/video
+
+
+
+block content
+    h2 Welcome sdfsdf
+    each potato in videos
+        +video(potato)
+    else    
+        li Sorry nothing found. 
