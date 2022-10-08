@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 
-const videoSchmea = new mongoose.Schema({
+
+
+const videoSchema = new mongoose.Schema({
     title: {type:String, required: true, trim: true, maxlength:80},
     description: {type:String, required: true, trim: true, minlength:20},
     createdAt: {type: Date, required: true, default: Date.now},
@@ -10,6 +12,10 @@ const videoSchmea = new mongoose.Schema({
         rating: {type:Number, default: 0, required: true},
     }
 }); 
+
+videoSchema.static("formatHashtags", function(hashtags){
+    return hashtags.split(",").map(word => word.startsWith("#") ? word : `#${word}`)
+});
  
-const movieModel = mongoose.model("video",videoSchmea);
+const movieModel = mongoose.model("video",videoSchema);
 export default movieModel;
