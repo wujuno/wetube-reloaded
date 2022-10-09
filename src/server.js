@@ -2,7 +2,7 @@
 /* node_modules/express 에서 익스프레스를 가져온다.*/
 import express from "express";
 import morgan from "morgan";
-import global from "./routers/globalRouter";
+import global from "./routers/rootRouter";
 import video from "./routers/videoRouter";
 import user from "./routers/userRouter";
 
