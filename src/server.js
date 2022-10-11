@@ -24,13 +24,10 @@ app.use(logger);
 app.use(express.urlencoded({extended:true}));
 //이 미들웨어는 브라우저에 쿠키를 보낸다.
 app.use(session({
-    secret: "Hello!",
+    secret: process.env.COOKIE_SECRET,
     resave: false,
     saveUninitialized: false,
-    cookie: {
-        maxAge: 10000,
-    },
-    store: MongoStore.create({mongoUrl:"mongodb://127.0.0.1:27017/wetube"})
+    store: MongoStore.create({mongoUrl:process.env.DB_URL})
 }))
 
 app.use(localsMiddleware);
