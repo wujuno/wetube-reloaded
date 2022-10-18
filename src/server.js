@@ -7,6 +7,7 @@ import MongoStore from "connect-mongo";
 import rootRouter from "./routers/rootRouter";
 import video from "./routers/videoRouter";
 import user from "./routers/userRouter";
+import apiRouter from "./routers/apiRouter";
 import { localsMiddleware } from "./middlewares";
 
 /* request를 받는 PORT를 설정한다. 
@@ -36,6 +37,7 @@ app.use("/static", express.static("assets"));
 app.use("/",rootRouter);
 app.use("/videos",video);
 app.use("/users",user);
+app.use("/api",apiRouter);
 
 export default app;
 
