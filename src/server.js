@@ -29,6 +29,7 @@ app.use((req, res, next) => {
     });
 app.use(logger);
 app.use(express.urlencoded({extended:true}));
+app.use(express.json());
 //이 미들웨어는 브라우저에 쿠키를 보낸다.
 app.use(session({
     secret: process.env.COOKIE_SECRET,
