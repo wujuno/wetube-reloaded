@@ -28,8 +28,17 @@
         margin-bottom: 10px;
         padding: 10px 20px;
         border-radius: 9999px;
+        position: relative;
         i {
             margin-right: 10px;
+        }
+        .video__comment-delete {
+            position: absolute;
+            right: 10px;
+            display: block;
+            bottom: 10px;
+
+
         }
     }
 }
