@@ -147,7 +147,6 @@ export const postEdit = async (req, res) => {
         body: {name,email,username,location},
         file,
     } = req;
-    console.log(avatarUrl);
     const existUserEmail = sessionEmail !== email ? await User.exists({email}) : undefined; 
     const existUsername = sessionUsername !== username ? await User.exists({username}) : undefined;
     if(existUserEmail || existUsername) {
@@ -155,9 +154,10 @@ export const postEdit = async (req, res) => {
             pageTitle:"Edit Profile", 
             errorMessage: "This username/email is already taken."})
     }
+    const isHeroku = process.env.NODE_ENV === "production";
     const updatedUser = await User.findByIdAndUpdate(_id, 
         {
-        avatarUrl: file ? file.location : avatarUrl,
+        avatarUrl: file ? (isHeroku ? file.location : file.path) : avatarUrl,
         name,
         email,
         username,
