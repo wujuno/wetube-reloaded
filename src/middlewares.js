@@ -36,9 +36,21 @@ export const publicOnlyMiddleware = (req,res,next) => {
     }
 }
 
-const multerUploader = multerS3({
+const s3ImageUploader = multerS3({
     s3: s3,
-    bucket: 'wetube-wujuno',
+    bucket: 'wetube-wujuno/images',
+    acl: "public-read",
+}
+)
+const s3VideoUploader = multerS3({
+    s3: s3,
+    bucket: 'wetube-wujuno/videos',
+    acl: "public-read",
+}
+)
+const s3ThumbnailUploader = multerS3({
+    s3: s3,
+    bucket: 'wetube-wujuno/thumbnails',
     acl: "public-read",
 }
 )
@@ -47,19 +59,19 @@ export const avatarUpload = multer({
     limits:{
         fileSize : 3000000,
     },
-    storage:multerUploader
+    storage:s3ImageUploader
 });
 export const videoUpload = multer({ 
     dest: "uploads/videos/", 
     limits:{
         fileSize : 10000000,
     },
-    storage:multerUploader
+    storage:s3VideoUploader
 });
 export const thumbnailUpload = multer({ 
     dest: "uploads/videos/", 
     limits:{
         fileSize : 10000000,
     },
-    storage:multerUploader
+    storage:s3ThumbnailUploader
 });
