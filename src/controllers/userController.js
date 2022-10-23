@@ -1,7 +1,7 @@
 import User from "../models/user"
 import Video from "../models/video"
 import fetch from "node-fetch";
-import bcrypt from "bcrypt"
+import bcrypt from "bcryptjs"
 import session from "express-session";
 
 export const getJoin = (req,res) => 
